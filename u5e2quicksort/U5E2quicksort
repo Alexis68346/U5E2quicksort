@@ -1,0 +1,67 @@
+package u5e2quicksort;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class U5E2quicksort {
+
+    public static void main(String[] args) {
+       List<Integer> lista = new ArrayList<Integer>();
+       
+       lista.add(5);
+       lista.add(7);
+       lista.add(9);
+       lista.add(3);
+       lista.add(10);
+       lista.add(2);
+       lista.add(51);
+       
+        System.out.println("lista original");
+      for(int i=0;i<lista.size();i++){
+          System.out.print(lista.get(i)+" ");
+      }
+                          System.out.println("");
+                          
+        int izq=0, der=lista.size()-1;
+        System.out.println("¿Desea ordenar los números? S/N");
+        Scanner sc2 = new Scanner(System.in);
+        /* Con esto capturamos lo que introducimos por teclado */
+        String res = sc2.nextLine();
+        /* Si es 'S' entra, si no sale */
+        if (res.equalsIgnoreCase("S")) {
+        quicksort(lista, izq,der);
+        System.out.println("\nLista ordenada: ");
+        for(int i=0;i<lista.size();i++){
+          System.out.print(lista.get(i)+" ");
+      }
+            System.out.println("");
+        }
+    }
+
+    public static void quicksort( List<Integer> A , int izq, int der) {
+    int pivote=A.get(izq), i=izq, j=der, aux;        
+ 
+     while(i < j){                                                             
+     while(A.get(i)<= pivote && i < j)
+        i++; 
+     while(A.get(j) > pivote) 
+        j--;           
+       if (i < j){                                             
+         aux=A.get(i);                      
+         A.set(i,A.get(j));
+         A.set(j,aux);
+     }
+   }
+   
+   A.set(izq, A.get(j));                                     
+   A.set(j,pivote);      
+   
+   if(izq < j-1)
+      quicksort(A,izq,j-1);         
+   if(j+1 < der)
+      quicksort(A,j+1,der);         
+   
+  }
+}
+//http://puntocomnoesunlenguaje.blogspot.com/2012/12/java-quicksort.html
